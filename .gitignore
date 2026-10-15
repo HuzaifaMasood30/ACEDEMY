@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment — never commit real secrets
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Storage (uploaded documents, generated PDFs)
+storage/
+!storage/.gitkeep
+
+# Test artefacts
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+logs/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Prisma
+prisma/migrations/dev.db*

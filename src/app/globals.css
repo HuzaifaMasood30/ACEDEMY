@@ -1,0 +1,445 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Academy ERP design system
+   Semantic tokens only — components never reference raw palette values, so a
+   single block below re-themes the whole product for light or dark.
+   ========================================================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Surfaces */
+  --canvas: oklch(98.4% 0.003 247);
+  --surface: oklch(100% 0 0);
+  --surface-raised: oklch(100% 0 0);
+  --surface-sunken: oklch(96.5% 0.005 247);
+  --surface-hover: oklch(96.8% 0.006 250);
+  --overlay: oklch(21% 0.02 260 / 0.5);
+
+  /* Ink */
+  --ink: oklch(21% 0.021 259);
+  --ink-muted: oklch(48% 0.018 257);
+  --ink-subtle: oklch(63% 0.015 257);
+  --ink-inverse: oklch(99% 0 0);
+
+  /* Lines */
+  --line: oklch(91.5% 0.006 250);
+  --line-strong: oklch(85% 0.009 250);
+
+  /* Brand — deep academic indigo */
+  --brand: oklch(48% 0.152 265);
+  --brand-hover: oklch(42.5% 0.155 265);
+  --brand-soft: oklch(95.5% 0.022 265);
+  --brand-soft-ink: oklch(38% 0.14 265);
+  --brand-ring: oklch(58% 0.15 265 / 0.4);
+
+  /* Accent — teal, used for positive momentum */
+  --accent: oklch(56% 0.104 190);
+  --accent-soft: oklch(95.5% 0.028 190);
+  --accent-soft-ink: oklch(38% 0.08 190);
+
+  /* Status */
+  --ok: oklch(54% 0.135 152);
+  --ok-soft: oklch(95.5% 0.035 152);
+  --ok-soft-ink: oklch(37% 0.1 152);
+  --warn: oklch(66% 0.145 72);
+  --warn-soft: oklch(96.5% 0.045 80);
+  --warn-soft-ink: oklch(42% 0.1 68);
+  --danger: oklch(55% 0.19 22);
+  --danger-hover: oklch(49% 0.19 22);
+  --danger-soft: oklch(95.5% 0.028 22);
+  --danger-soft-ink: oklch(42% 0.16 22);
+  --info: oklch(56% 0.14 250);
+  --info-soft: oklch(95.5% 0.03 250);
+  --info-soft-ink: oklch(40% 0.12 250);
+
+  /* Chart series — distinguishable in both themes and for common CVD types */
+  --chart-1: oklch(52% 0.155 265);
+  --chart-2: oklch(58% 0.11 190);
+  --chart-3: oklch(66% 0.15 72);
+  --chart-4: oklch(56% 0.16 330);
+  --chart-5: oklch(55% 0.14 152);
+  --chart-6: oklch(60% 0.14 20);
+
+  /* Elevation */
+  --shadow-xs: 0 1px 2px 0 oklch(21% 0.02 259 / 0.05);
+  --shadow-sm: 0 1px 3px 0 oklch(21% 0.02 259 / 0.08), 0 1px 2px -1px oklch(21% 0.02 259 / 0.06);
+  --shadow-md: 0 4px 12px -2px oklch(21% 0.02 259 / 0.09), 0 2px 6px -2px oklch(21% 0.02 259 / 0.05);
+  --shadow-lg: 0 12px 28px -6px oklch(21% 0.02 259 / 0.13), 0 4px 10px -4px oklch(21% 0.02 259 / 0.07);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+.dark {
+  --canvas: oklch(17.5% 0.016 260);
+  --surface: oklch(21.5% 0.018 260);
+  --surface-raised: oklch(24.5% 0.02 260);
+  --surface-sunken: oklch(15% 0.014 260);
+  --surface-hover: oklch(27% 0.022 260);
+  --overlay: oklch(10% 0.01 260 / 0.7);
+
+  --ink: oklch(96.5% 0.004 250);
+  --ink-muted: oklch(76% 0.014 255);
+  --ink-subtle: oklch(60% 0.015 255);
+  --ink-inverse: oklch(18% 0.018 260);
+
+  --line: oklch(31% 0.019 260);
+  --line-strong: oklch(39% 0.022 260);
+
+  --brand: oklch(70% 0.135 265);
+  --brand-hover: oklch(76% 0.13 265);
+  --brand-soft: oklch(29% 0.06 265);
+  --brand-soft-ink: oklch(86% 0.07 265);
+  --brand-ring: oklch(70% 0.135 265 / 0.45);
+
+  --accent: oklch(72% 0.1 190);
+  --accent-soft: oklch(28% 0.04 190);
+  --accent-soft-ink: oklch(86% 0.06 190);
+
+  --ok: oklch(72% 0.13 152);
+  --ok-soft: oklch(28% 0.05 152);
+  --ok-soft-ink: oklch(86% 0.08 152);
+  --warn: oklch(80% 0.135 80);
+  --warn-soft: oklch(30% 0.055 75);
+  --warn-soft-ink: oklch(89% 0.09 82);
+  --danger: oklch(70% 0.16 22);
+  --danger-hover: oklch(76% 0.15 22);
+  --danger-soft: oklch(29% 0.07 22);
+  --danger-soft-ink: oklch(87% 0.09 22);
+  --info: oklch(72% 0.12 250);
+  --info-soft: oklch(29% 0.055 250);
+  --info-soft-ink: oklch(87% 0.075 250);
+
+  --chart-1: oklch(70% 0.135 265);
+  --chart-2: oklch(74% 0.1 190);
+  --chart-3: oklch(80% 0.135 78);
+  --chart-4: oklch(74% 0.14 330);
+  --chart-5: oklch(73% 0.13 152);
+  --chart-6: oklch(72% 0.14 22);
+
+  --shadow-xs: 0 1px 2px 0 oklch(0% 0 0 / 0.3);
+  --shadow-sm: 0 1px 3px 0 oklch(0% 0 0 / 0.4), 0 1px 2px -1px oklch(0% 0 0 / 0.3);
+  --shadow-md: 0 4px 12px -2px oklch(0% 0 0 / 0.45), 0 2px 6px -2px oklch(0% 0 0 / 0.3);
+  --shadow-lg: 0 12px 28px -6px oklch(0% 0 0 / 0.55), 0 4px 10px -4px oklch(0% 0 0 / 0.35);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-hover: var(--surface-hover);
+  --color-overlay: var(--overlay);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-inverse: var(--ink-inverse);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-ink: var(--brand-soft-ink);
+  --color-brand-ring: var(--brand-ring);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-ink: var(--accent-soft-ink);
+
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-ok-soft-ink: var(--ok-soft-ink);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-warn-soft-ink: var(--warn-soft-ink);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-soft-ink: var(--danger-soft-ink);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-ink: var(--info-soft-ink);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Visible, consistent focus for keyboard users only. */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background-color: var(--brand-soft);
+    color: var(--brand-soft-ink);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.011em;
+  }
+
+  /* Numeric columns must line up. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  [dir='rtl'] .flip-rtl {
+    transform: scaleX(-1);
+  }
+}
+
+@layer utilities {
+  .card {
+    background-color: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .card-interactive {
+    transition: box-shadow 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .card-interactive:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--line-strong);
+  }
+
+  .surface-grid {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .scrollbar-slim {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background-color: var(--line-strong);
+    border-radius: 999px;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ==========================================================================
+   Motion — small, purposeful, and disabled when the user asks for less.
+   ========================================================================== */
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-rise { animation: rise 260ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade { animation: fade 200ms ease both; }
+.animate-scale-in { animation: scale-in 180ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-slide-in-right { animation: slide-in-right 220ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Stagger helper for lists of cards. */
+.stagger > * { animation: rise 300ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 40ms; }
+.stagger > *:nth-child(3) { animation-delay: 80ms; }
+.stagger > *:nth-child(4) { animation-delay: 120ms; }
+.stagger > *:nth-child(5) { animation-delay: 160ms; }
+.stagger > *:nth-child(6) { animation-delay: 200ms; }
+.stagger > *:nth-child(7) { animation-delay: 240ms; }
+.stagger > *:nth-child(8) { animation-delay: 280ms; }
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--surface-sunken);
+  border-radius: var(--radius-md);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--surface) 60%, transparent),
+    transparent
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+/* ==========================================================================
+   Depth — a restrained 3D treatment for hero and highlight panels.
+   Perspective and a subtle rotation give layering without motion sickness.
+   ========================================================================== */
+
+.tilt-card {
+  transform: perspective(1400px) rotateY(-5deg) rotateX(2.5deg) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tilt-card:hover {
+  transform: perspective(1400px) rotateY(-1.5deg) rotateX(0.5deg) translateZ(14px);
+}
+
+.tilt-card-soft {
+  transform: perspective(1200px) rotateY(4deg) translateZ(24px);
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tilt-card-soft:hover {
+  transform: perspective(1200px) rotateY(1deg) translateZ(34px);
+}
+
+/* A raised surface with a light source coming from the top-left. */
+.depth-raised {
+  box-shadow:
+    var(--shadow-md),
+    inset 0 1px 0 color-mix(in oklab, var(--surface-raised) 80%, transparent);
+}
+
+/* Layered sheen used behind hero content. */
+.depth-sheen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--brand) 8%, transparent) 0%,
+    transparent 42%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  /* Rotation reads as skew on narrow screens, so flatten it. */
+  .tilt-card,
+  .tilt-card-soft {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card,
+  .tilt-card-soft {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Print — receipts, report cards and registers must be usable on paper.
+   ========================================================================== */
+
+@media print {
+  .no-print { display: none !important; }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .card,
+  .print-block {
+    box-shadow: none !important;
+    border: 1px solid #d4d4d8 !important;
+    break-inside: avoid;
+  }
+
+  a[href]::after { content: ''; }
+}
