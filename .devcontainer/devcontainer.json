@@ -1,0 +1,30 @@
+{
+  "name": "Al-Noor Academy ERP",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/ACEDEMY",
+
+  "forwardPorts": [3000, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Academy ERP",
+      "onAutoForward": "openPreview",
+      "visibility": "public"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent",
+      "visibility": "private"
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start.sh",
+
+  "remoteUser": "node",
+  "customizations": {
+    "vscode": {
+      "extensions": ["Prisma.prisma", "bradlc.vscode-tailwindcss", "dbaeumer.vscode-eslint"]
+    }
+  }
+}

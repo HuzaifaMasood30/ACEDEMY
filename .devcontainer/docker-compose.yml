@@ -1,0 +1,29 @@
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/javascript-node:20-bookworm
+    volumes:
+      - ..:/workspaces/ACEDEMY:cached
+    command: sleep infinity
+    environment:
+      DATABASE_URL: postgresql://academy:academy@db:5432/academy_erp?schema=public
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: academy
+      POSTGRES_PASSWORD: academy
+      POSTGRES_DB: academy_erp
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U academy -d academy_erp']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - academy-pgdata:/var/lib/postgresql/data
+
+volumes:
+  academy-pgdata:
