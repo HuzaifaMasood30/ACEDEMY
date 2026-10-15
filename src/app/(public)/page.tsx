@@ -147,15 +147,15 @@ export default async function HomePage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs font-medium text-[var(--ink-subtle)]">
-                      Today&apos;s attendance
+                      Attendance overview
                     </p>
                     <p className="mt-1 text-3xl font-semibold tracking-tight text-[var(--ink)]">
                       <CountUp value={94} suffix="%" />
                     </p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ok-soft)] px-2.5 py-1 text-xs font-medium text-[var(--ok-soft-ink)]">
-                    <span className="pulse-dot size-1.5 rounded-full bg-[var(--ok)]" aria-hidden />
-                    Live
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--info-soft)] px-2.5 py-1 text-xs font-medium text-[var(--info-soft-ink)]">
+                    <span className="size-1.5 rounded-full bg-[var(--info)]" aria-hidden />
+                    Preview
                   </span>
                 </div>
 
@@ -189,10 +189,14 @@ export default async function HomePage() {
                       Guardian alerted for absence
                     </p>
                     <p className="truncate text-[0.6875rem] text-[var(--ink-subtle)]">
-                      Delivered · 18 of 18 · audit logged
+                      Delivered · audit logged
                     </p>
                   </div>
                 </div>
+
+                <p className="mt-3 text-[0.6875rem] text-[var(--ink-subtle)]">
+                  Illustrative view of the staff dashboard.
+                </p>
               </div>
             </div>
           </Reveal>
