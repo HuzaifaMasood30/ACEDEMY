@@ -76,6 +76,36 @@ the admin navigation.
 
 ---
 
+## 3a. Run it in GitHub Codespaces
+
+The quickest way to see the app running, with no local setup. A codespace is
+a full Linux machine in the cloud, so unlike GitHub Pages it can run the
+server and a database.
+
+1. Open <https://github.com/HuzaifaMasood30/ACEDEMY> and click **Code** then
+the **Codespaces** tab, then **Create codespace on main**.
+2. Wait for the build. `.devcontainer/setup.sh` writes a development `.env`,
+installs dependencies, starts PostgreSQL, applies migrations and seeds the
+demo data. This takes a few minutes the first time.
+3. The dev server starts on port 3000 and the preview opens automatically.
+
+To get a shareable link, open the **PORTS** tab in the terminal panel,
+right-click port 3000, choose **Port Visibility → Public**, then copy the
+address. It looks like
+`https://<codespace-name>-3000.app.github.dev`.
+
+Notes:
+
+- Every page queries the database, including the public site, so the app
+  cannot be run without PostgreSQL.
+- Codespaces is a development environment, not production hosting. The
+  forwarded URL is temporary and stops when the codespace is deleted.
+- Free personal accounts include 120 core hours and 15 GB of storage per
+  month; verified students get 180 core hours. A codespace keeps consuming
+  hours while it is running, so stop it when you are finished.
+
+---
+
 ## 4. Setup
 
 ```bash
