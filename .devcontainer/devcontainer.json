@@ -1,5 +1,5 @@
 {
-  "name": "Al-Noor Academy ERP",
+  "name": "Wisdom Academy ERP",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/ACEDEMY",

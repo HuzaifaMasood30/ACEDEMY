@@ -1,4 +1,4 @@
-# Al-Noor Academy — Academy Management ERP + LMS
+# Wisdom Academy — Academy Management ERP + LMS
 
 A full-stack academy management system covering admissions, academics, attendance,
 timetabling, examinations, fees, progress reporting and parent communication, with
@@ -171,15 +171,15 @@ delete them before exposing this system to anyone.**
 
 | Role | Email |
 | --- | --- |
-| Administrator (owner) | `owner@alnoor-academy.example` |
-| Administrator (registrar) | `registrar@alnoor-academy.example` |
-| Teacher | `ayesha.siddiqui@alnoor-academy.example` |
-| Teacher | `fatima.noor@alnoor-academy.example` |
-| Student | `hamza.hashmi1@student.alnoor-academy.example` |
-| Parent | `tariq.mahmood1@parent.alnoor-academy.example` |
+| Administrator (owner) | `owner@wisdom-academy.example` |
+| Administrator (registrar) | `registrar@wisdom-academy.example` |
+| Teacher | `ayesha.siddiqui@wisdom-academy.example` |
+| Teacher | `fatima.noor@wisdom-academy.example` |
+| Student | `hamza.hashmi1@student.wisdom-academy.example` |
+| Parent | `tariq.mahmood1@parent.wisdom-academy.example` |
 
-Seed email patterns are `<first>.<last><n>@student.alnoor-academy.example` for
-students and `<first>.<last><n>@parent.alnoor-academy.example` for guardians, so
+Seed email patterns are `<first>.<last><n>@student.wisdom-academy.example` for
+students and `<first>.<last><n>@parent.wisdom-academy.example` for guardians, so
 the remaining accounts follow the same shape.
 
 ---

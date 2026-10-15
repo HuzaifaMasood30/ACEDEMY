@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { ThemeProvider } from '@/components/theme-provider';
+import { brand, brandTitle, brandTitleTemplate } from '@/lib/brand';
 import './globals.css';
 
 const inter = Inter({
@@ -12,12 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Al-Noor Academy — Academy Management & Smart Learning',
-    template: '%s · Al-Noor Academy',
+    default: brandTitle,
+    template: brandTitleTemplate,
   },
-  description:
-    'A complete academy management platform: admissions, timetables, attendance, fees, examinations, and online learning for administrators, teachers, students and parents.',
-  applicationName: 'Academy ERP',
+  description: brand.description,
+  applicationName: brand.name,
   formatDetection: { telephone: false },
 };
 

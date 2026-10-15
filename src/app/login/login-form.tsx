@@ -95,7 +95,7 @@ export function LoginForm({
           autoComplete="username"
           inputMode="email"
           autoFocus
-          placeholder="you@alnoor-academy.example"
+          placeholder="you@wisdom-academy.example"
           aria-invalid={Boolean(fieldErrors.email)}
           disabled={submitting}
         />

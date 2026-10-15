@@ -29,12 +29,12 @@ probe() {
 
 for role in teacher student parent; do
   case "$role" in
-    teacher) EMAIL='ayesha.siddiqui@alnoor-academy.example' ;;
+    teacher) EMAIL='ayesha.siddiqui@wisdom-academy.example' ;;
     student) EMAIL=$(cd /workspace/project && npx tsx -e "
 import { prisma } from './src/lib/prisma';
 (async()=>{const s=await prisma.user.findFirst({where:{role:'STUDENT'},select:{email:true}});console.log(s?.email??'');await prisma.\$disconnect();})();
 " 2>/dev/null | tail -1) ;;
-    parent)  EMAIL='tariq.mahmood1@parent.alnoor-academy.example' ;;
+    parent)  EMAIL='tariq.mahmood1@parent.wisdom-academy.example' ;;
   esac
 
   JAR="/tmp/jar-$role.txt"

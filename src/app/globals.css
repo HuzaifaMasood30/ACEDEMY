@@ -423,6 +423,180 @@
 }
 
 /* ==========================================================================
+   Premium layer — marketing surfaces only.
+   The dashboards stay quiet and dense; these classes are for the public site
+   and the sign-in screen, where the academy is being presented.
+   ========================================================================== */
+
+/* Aurora — soft colour fields that give the page depth without imagery. */
+.aurora {
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 140%;
+  pointer-events: none;
+  background:
+    radial-gradient(38rem 26rem at 18% 22%, color-mix(in oklab, var(--brand) 26%, transparent), transparent 62%),
+    radial-gradient(34rem 24rem at 82% 12%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 60%),
+    radial-gradient(30rem 22rem at 62% 78%, color-mix(in oklab, var(--chart-4) 18%, transparent), transparent 64%);
+  filter: blur(6px);
+  opacity: 0.9;
+}
+
+.dark .aurora {
+  opacity: 0.55;
+}
+
+/* A very slow drift keeps the hero from feeling like a static image. */
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-2%, 1.5%, 0) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+.aurora-animated {
+  animation: aurora-drift 22s ease-in-out infinite;
+}
+
+/* Fine grid that fades toward the edges. */
+.grid-fade {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--line) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--line) 70%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(70% 60% at 50% 40%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 20%, transparent 78%);
+}
+
+/* Gradient text — used sparingly, for a single phrase per screen. */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--brand) 0%,
+    color-mix(in oklab, var(--accent) 75%, var(--brand)) 48%,
+    var(--chart-4) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass — translucent surface for sticky bars and floating cards. */
+.glass {
+  background-color: color-mix(in oklab, var(--surface) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Glow — a coloured halo, for primary calls to action. */
+.glow-brand {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--brand) 30%, transparent),
+    0 10px 34px -10px color-mix(in oklab, var(--brand) 55%, transparent);
+}
+
+.glow-brand:hover {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--brand) 45%, transparent),
+    0 16px 46px -12px color-mix(in oklab, var(--brand) 70%, transparent);
+}
+
+/* Hairline border that catches light along the top edge. */
+.edge-light {
+  position: relative;
+}
+
+.edge-light::after {
+  content: '';
+  position: absolute;
+  inset-inline: 12%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--brand) 60%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Scroll-reveal. Elements start hidden and are released by the observer. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Progressive stagger for grids of cards. */
+.reveal-delay-1 { transition-delay: 70ms; }
+.reveal-delay-2 { transition-delay: 140ms; }
+.reveal-delay-3 { transition-delay: 210ms; }
+.reveal-delay-4 { transition-delay: 280ms; }
+.reveal-delay-5 { transition-delay: 350ms; }
+.reveal-delay-6 { transition-delay: 420ms; }
+
+/* Marquee for the trust strip. Duplicated content makes the loop seamless. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Slow pulse for status dots and live badges. */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--ok) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.pulse-dot {
+  animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Floating accent used behind cards to suggest 3D layering. */
+.float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Respect reduced motion for everything added above. */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-animated,
+  .marquee-track,
+  .pulse-dot,
+  .float-slow {
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================================
    Print — receipts, report cards and registers must be usable on paper.
    ========================================================================== */
 

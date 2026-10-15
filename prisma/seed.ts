@@ -125,11 +125,11 @@ async function main() {
 
   const campus = await prisma.campus.create({
     data: {
-      name: 'Al-Noor Academy — Main Campus',
+      name: 'Wisdom Academy — Main Campus',
       code: 'MAIN',
       address: '24 Knowledge Avenue, Gulberg III, Lahore',
       phone: '+924211122334',
-      email: 'office@alnoor-academy.example',
+      email: 'office@wisdom-academy.example',
     },
   });
 
@@ -139,12 +139,12 @@ async function main() {
         key: 'academy.profile',
         category: 'general',
         value: {
-          name: 'Al-Noor Academy',
+          name: 'Wisdom Academy',
           tagline: 'Building confident learners since 1998',
-          email: 'office@alnoor-academy.example',
+          email: 'office@wisdom-academy.example',
           phone: '+924211122334',
           address: '24 Knowledge Avenue, Gulberg III, Lahore',
-          website: 'https://alnoor-academy.example',
+          website: 'https://wisdom-academy.example',
         },
       },
       {
@@ -433,7 +433,7 @@ async function main() {
 
   const admin = await prisma.user.create({
     data: {
-      email: 'owner@alnoor-academy.example',
+      email: 'owner@wisdom-academy.example',
       passwordHash,
       name: 'Imran Khalid',
       role: Role.ADMIN,
@@ -446,7 +446,7 @@ async function main() {
 
   await prisma.user.create({
     data: {
-      email: 'registrar@alnoor-academy.example',
+      email: 'registrar@wisdom-academy.example',
       passwordHash,
       name: 'Sadia Rehman',
       role: Role.ADMIN,
@@ -458,12 +458,12 @@ async function main() {
   });
 
   const teacherDefs = [
-    { name: 'Ayesha Siddiqui', email: 'ayesha.siddiqui@alnoor-academy.example', designation: 'Senior Teacher', department: 'Mathematics', subjects: ['MATH'], maxPeriods: 26 },
-    { name: 'Bilal Ahmed', email: 'bilal.ahmed@alnoor-academy.example', designation: 'Teacher', department: 'Languages', subjects: ['ENG', 'URDU'], maxPeriods: 24 },
-    { name: 'Fatima Noor', email: 'fatima.noor@alnoor-academy.example', designation: 'Senior Teacher', department: 'Sciences', subjects: ['PHY', 'CHEM'], maxPeriods: 24 },
-    { name: 'Hassan Raza', email: 'hassan.raza@alnoor-academy.example', designation: 'Teacher', department: 'Sciences', subjects: ['BIO', 'CHEM'], maxPeriods: 22 },
-    { name: 'Nida Aslam', email: 'nida.aslam@alnoor-academy.example', designation: 'Teacher', department: 'Computer Science', subjects: ['CS'], maxPeriods: 20 },
-    { name: 'Kamran Yousuf', email: 'kamran.yousuf@alnoor-academy.example', designation: 'Teacher', department: 'Humanities', subjects: ['ISL', 'GK'], maxPeriods: 20 },
+    { name: 'Ayesha Siddiqui', email: 'ayesha.siddiqui@wisdom-academy.example', designation: 'Senior Teacher', department: 'Mathematics', subjects: ['MATH'], maxPeriods: 26 },
+    { name: 'Bilal Ahmed', email: 'bilal.ahmed@wisdom-academy.example', designation: 'Teacher', department: 'Languages', subjects: ['ENG', 'URDU'], maxPeriods: 24 },
+    { name: 'Fatima Noor', email: 'fatima.noor@wisdom-academy.example', designation: 'Senior Teacher', department: 'Sciences', subjects: ['PHY', 'CHEM'], maxPeriods: 24 },
+    { name: 'Hassan Raza', email: 'hassan.raza@wisdom-academy.example', designation: 'Teacher', department: 'Sciences', subjects: ['BIO', 'CHEM'], maxPeriods: 22 },
+    { name: 'Nida Aslam', email: 'nida.aslam@wisdom-academy.example', designation: 'Teacher', department: 'Computer Science', subjects: ['CS'], maxPeriods: 20 },
+    { name: 'Kamran Yousuf', email: 'kamran.yousuf@wisdom-academy.example', designation: 'Teacher', department: 'Humanities', subjects: ['ISL', 'GK'], maxPeriods: 20 },
   ];
 
   const teachers = [];
@@ -575,7 +575,7 @@ async function main() {
       const firstName = firstNames[(admissionCounter * 7 + i * 3) % firstNames.length];
       const lastName = lastNames[(admissionCounter * 5 + i) % lastNames.length];
       const admissionNo = `STD-2026-${String(admissionCounter).padStart(4, '0')}`;
-      const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${admissionCounter}@student.alnoor-academy.example`;
+      const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${admissionCounter}@student.wisdom-academy.example`;
 
       const user = await prisma.user.create({
         data: {
@@ -668,7 +668,7 @@ async function main() {
 
   for (const studentEntry of students) {
     const def = guardianDefs[(parentCounter - 1) % guardianDefs.length];
-    const guardianEmail = `${def.name.split(' ')[0].toLowerCase()}.${def.name.split(' ')[1].toLowerCase()}${parentCounter}@parent.alnoor-academy.example`;
+    const guardianEmail = `${def.name.split(' ')[0].toLowerCase()}.${def.name.split(' ')[1].toLowerCase()}${parentCounter}@parent.wisdom-academy.example`;
 
     const guardianUser = await prisma.user.create({
       data: {
@@ -701,7 +701,7 @@ async function main() {
     // A second guardian for every third student.
     if (parentCounter % 3 === 0) {
       const secondDef = guardianDefs[1];
-      const secondEmail = `second.guardian${parentCounter}@parent.alnoor-academy.example`;
+      const secondEmail = `second.guardian${parentCounter}@parent.wisdom-academy.example`;
 
       const secondGuardian = await prisma.user.create({
         data: {
@@ -1456,10 +1456,10 @@ async function main() {
   console.log('\n✅ Seed complete\n');
   console.log('   Demo accounts (all use the same password):');
   console.log(`   password: ${SEED_PASSWORD}\n`);
-  console.log('   Administrator  owner@alnoor-academy.example');
-  console.log('   Administrator  registrar@alnoor-academy.example');
-  console.log('   Teacher        ayesha.siddiqui@alnoor-academy.example');
-  console.log('   Teacher        fatima.noor@alnoor-academy.example');
+  console.log('   Administrator  owner@wisdom-academy.example');
+  console.log('   Administrator  registrar@wisdom-academy.example');
+  console.log('   Teacher        ayesha.siddiqui@wisdom-academy.example');
+  console.log('   Teacher        fatima.noor@wisdom-academy.example');
   console.log('   Student        ' + students[0].student.admissionNo + ' → check the seeded student email pattern');
   console.log('   Parent         check the seeded parent email pattern\n');
 }

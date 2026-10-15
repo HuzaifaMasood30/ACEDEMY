@@ -23,10 +23,10 @@ login() {
 code() { curl -s -o /dev/null -w '%{http_code}' -b "$1" "$BASE$2"; }
 
 for pair in \
-  "owner@alnoor-academy.example:ADMIN" \
-  "ayesha.siddiqui@alnoor-academy.example:TEACHER" \
-  "hamza.hashmi1@student.alnoor-academy.example:STUDENT" \
-  "tariq.mahmood1@parent.alnoor-academy.example:PARENT"
+  "owner@wisdom-academy.example:ADMIN" \
+  "ayesha.siddiqui@wisdom-academy.example:TEACHER" \
+  "hamza.hashmi1@student.wisdom-academy.example:STUDENT" \
+  "tariq.mahmood1@parent.wisdom-academy.example:PARENT"
 do
   email="${pair%%:*}"
   role="${pair##*:}"

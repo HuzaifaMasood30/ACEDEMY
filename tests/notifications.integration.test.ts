@@ -32,7 +32,7 @@ function baseInput(dedupeKey: string) {
       studentName: 'Test Student',
       className: 'Grade 9 — A',
       date: '2026-01-15',
-      academyName: 'Al-Noor Academy',
+      academyName: 'Wisdom Academy',
     },
   };
 }
@@ -112,7 +112,7 @@ describe('notification dedupe', () => {
       where: { id: result.jobId },
       select: { body: true, status: true },
     });
-    expect(job.body).toContain('Al-Noor Academy');
+    expect(job.body).toContain('Wisdom Academy');
     expect(job.body).toContain('Test Student');
     // A queued job has not been sent: the provider has not confirmed anything.
     expect(job.status).toBe('QUEUED');
