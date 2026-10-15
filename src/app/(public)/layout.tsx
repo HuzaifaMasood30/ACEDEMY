@@ -3,6 +3,7 @@ import { GraduationCap, Mail, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import { PUBLIC_NAV } from '@/lib/navigation';
 import { getAcademyProfile } from '@/server/settings';
 import { Button } from '@/components/ui/primitives';
+import { ThemeToggle } from '@/components/app-shell';
 import { BackToTop } from '@/components/marketing/back-to-top';
 import { WhatsAppFloat } from '@/components/marketing/whatsapp-float';
 
@@ -58,6 +59,7 @@ export default async function PublicLayout({
           </nav>
 
           <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            <ThemeToggle />
             <Link href="/login" className="hidden sm:block">
               <Button variant="outline" size="sm">
                 Sign in

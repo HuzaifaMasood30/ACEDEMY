@@ -4,6 +4,7 @@ import { CalendarClock, MessageCircle, ShieldCheck, Wallet } from 'lucide-react'
 import { auth } from '@/auth';
 import { homeForRole } from '@/lib/rbac';
 import { getAcademyProfile } from '@/server/settings';
+import { ThemeToggle } from '@/components/app-shell';
 import { LoginForm } from './login-form';
 
 export const metadata = { title: 'Sign in' };
@@ -95,6 +96,10 @@ export default async function LoginPage({
 
       {/* ----------------------------------------------------- Form panel */}
       <main className="relative flex items-center justify-center px-4 py-12 sm:px-8">
+        <div className="absolute right-4 top-4 sm:right-6 sm:top-6">
+          <ThemeToggle />
+        </div>
+
         <div className="w-full max-w-sm">
           {/* Compact brand mark for small screens, where the aside is hidden. */}
           <div className="mb-8 text-center lg:hidden">
