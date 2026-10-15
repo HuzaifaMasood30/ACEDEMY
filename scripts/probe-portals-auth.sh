@@ -2,7 +2,7 @@
 # Sign in as one account per role and confirm each portal serves its own pages
 # while refusing the others. Reads only; changes nothing.
 set -u
-BASE=http://localhost:3000
+BASE=${BASE:-http://localhost:3000}
 PW="Academy@123"
 
 login() {

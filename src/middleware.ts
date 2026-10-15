@@ -18,16 +18,30 @@ const ROLE_PREFIX: Record<string, string> = {
 
 const PORTAL_PREFIXES = ['/admin', '/teacher', '/student', '/parent'];
 
+/**
+ * Resolve the session cookie name from the request.
+ *
+ * `getToken` defaults `cookieName` to the non-secure `authjs.session-token`
+ * unless `secureCookie` is passed, so in a production build it never finds the
+ * `__Secure-`-prefixed cookie that the Node runtime issued and returns null.
+ * Reading the name off the request keeps both names working in either mode.
+ */
+function sessionCookieName(request: NextRequest): string {
+  return request.cookies.has('__Secure-authjs.session-token')
+    ? '__Secure-authjs.session-token'
+    : 'authjs.session-token';
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
+
+  const cookieName = sessionCookieName(request);
 
   const token = await getToken({
     req: request,
     secret: env.AUTH_SECRET,
-    salt:
-      env.NODE_ENV === 'production'
-        ? '__Secure-authjs.session-token'
-        : 'authjs.session-token',
+    cookieName,
+    salt: cookieName,
   });
 
   const isPortal = PORTAL_PREFIXES.some(
