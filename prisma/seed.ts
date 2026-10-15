@@ -562,6 +562,7 @@ async function main() {
     student: { id: string; firstName: string; lastName: string; admissionNo: string };
     classSectionId: string;
     userId: string;
+    email: string;
   }
 
   const students: SeededStudent[] = [];
@@ -641,6 +642,7 @@ async function main() {
         },
         classSectionId: classSection.id,
         userId: user.id,
+        email,
       });
 
       admissionCounter += 1;
@@ -663,7 +665,7 @@ async function main() {
 
   // Every student gets at least one parent; some get two, and a few parents
   // have several children to exercise the multi-child dashboard.
-  const parentUsers: { id: string; name: string }[] = [];
+  const parentUsers: { id: string; name: string; email: string }[] = [];
   let parentCounter = 1;
 
   for (const studentEntry of students) {
@@ -729,7 +731,7 @@ async function main() {
       });
     }
 
-    parentUsers.push({ id: guardianUser.id, name: def.name });
+    parentUsers.push({ id: guardianUser.id, name: def.name, email: guardianEmail });
     parentCounter += 1;
   }
 
@@ -1454,14 +1456,24 @@ async function main() {
   });
 
   console.log('\n✅ Seed complete\n');
-  console.log('   Demo accounts (all use the same password):');
+  console.log('   Demo accounts — every seeded account uses the same password:');
   console.log(`   password: ${SEED_PASSWORD}\n`);
+  console.log('   Role           Email');
+  console.log('   -------------  ------------------------------------------------');
   console.log('   Administrator  owner@wisdom-academy.example');
   console.log('   Administrator  registrar@wisdom-academy.example');
   console.log('   Teacher        ayesha.siddiqui@wisdom-academy.example');
   console.log('   Teacher        fatima.noor@wisdom-academy.example');
-  console.log('   Student        ' + students[0].student.admissionNo + ' → check the seeded student email pattern');
-  console.log('   Parent         check the seeded parent email pattern\n');
+  console.log(`   Student        ${students[0]?.email ?? '-'}  (${students[0]?.student.admissionNo ?? '-'})`);
+  console.log(`   Parent         ${parentUsers[0]?.email ?? '-'}  (guardian of several students)`);
+  console.log(
+    `\n   ${students.length} student and ${parentUsers.length} parent accounts are seeded.`,
+  );
+  console.log(
+    '   Student emails are <first>.<last><n>@student.wisdom-academy.example and parent',
+  );
+  console.log('   emails <first>.<last><n>@parent.wisdom-academy.example, where <n> is a seed counter.');
+  console.log('   The two emails above are the reliable ones to sign in with.\n');
 }
 
 main()

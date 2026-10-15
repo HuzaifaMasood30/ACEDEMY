@@ -98,3 +98,8 @@ jobs:
         env:
           BASE: http://127.0.0.1:3000
         run: node scripts/check-signout-switch.mjs
+
+      - name: Accounts documented in the README can sign in
+        env:
+          BASE: http://127.0.0.1:3000
+        run: node scripts/check-documented-accounts.mjs

@@ -169,18 +169,29 @@ Every seeded account uses the password from `SEED_DEFAULT_PASSWORD`
 (`Academy@123` by default). **These are development credentials. Change or
 delete them before exposing this system to anyone.**
 
-| Role | Email |
-| --- | --- |
-| Administrator (owner) | `owner@wisdom-academy.example` |
-| Administrator (registrar) | `registrar@wisdom-academy.example` |
-| Teacher | `ayesha.siddiqui@wisdom-academy.example` |
-| Teacher | `fatima.noor@wisdom-academy.example` |
-| Student | `hamza.hashmi1@student.wisdom-academy.example` |
-| Parent | `tariq.mahmood1@parent.wisdom-academy.example` |
+Sign in at `/login`. Each account is taken straight to its own portal.
+
+| Role | Email | Password | Lands on |
+| --- | --- | --- | --- |
+| Administrator (owner) | `owner@wisdom-academy.example` | `Academy@123` | `/admin` |
+| Administrator (registrar) | `registrar@wisdom-academy.example` | `Academy@123` | `/admin` |
+| Teacher | `ayesha.siddiqui@wisdom-academy.example` | `Academy@123` | `/teacher` |
+| Teacher | `fatima.noor@wisdom-academy.example` | `Academy@123` | `/teacher` |
+| Student | `hamza.hashmi1@student.wisdom-academy.example` | `Academy@123` | `/student` |
+| Parent | `tariq.mahmood1@parent.wisdom-academy.example` | `Academy@123` | `/parent` |
+
+`npm run db:seed` prints these same six accounts at the end of a run, so you do
+not have to derive them by hand.
 
 Seed email patterns are `<first>.<last><n>@student.wisdom-academy.example` for
 students and `<first>.<last><n>@parent.wisdom-academy.example` for guardians, so
-the remaining accounts follow the same shape.
+the remaining accounts follow the same shape. The `<n>` is a seed counter, not a
+roll number, so it is not obvious from a student's name — use the two accounts
+above, or look an address up in the `User` table.
+
+Only one account can be signed in per browser at a time. To switch user, sign
+out from the avatar menu in the header and then sign in again; visiting `/login`
+while signed in offers the same choice rather than redirecting away.
 
 ---
 
