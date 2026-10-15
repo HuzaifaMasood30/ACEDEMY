@@ -93,3 +93,8 @@ jobs:
         env:
           BASE: http://127.0.0.1:3000
         run: node scripts/check-portal-login.mjs
+
+      - name: Sign-out and account switching end-to-end
+        env:
+          BASE: http://127.0.0.1:3000
+        run: node scripts/check-signout-switch.mjs

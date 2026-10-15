@@ -468,6 +468,26 @@ Migrations live in `prisma/migrations/` and are applied in order. `db:seed`
 clears the demo data it manages and recreates it, so do not point it at a
 database holding real records.
 
+### If the sandbox has been recycled
+
+A recycled development container loses both PostgreSQL and the Playwright
+browser, and the next `npm run build` then fails while prerendering a page that
+reads the database. Restore both with:
+
+```bash
+sudo apt-get install -y postgresql postgresql-contrib
+sudo pg_ctlcluster 17 main start
+sudo -u postgres psql -c "CREATE ROLE academy LOGIN PASSWORD 'academy_dev_pw' SUPERUSER;"
+sudo -u postgres createdb -O academy academy_erp
+npx prisma migrate deploy && npm run db:seed
+npx playwright install chromium
+```
+
+The build failure names the database, e.g.
+`Error occurred prerendering page "/admissions"` alongside
+`PrismaClientInitializationError`, which is the signal that Postgres is down
+rather than a code fault.
+
 ### Backup and restore
 
 ```bash

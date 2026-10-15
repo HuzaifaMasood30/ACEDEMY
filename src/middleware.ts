@@ -65,10 +65,10 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (pathname === '/login' && token?.uid) {
-    const home = ROLE_PREFIX[token.role as string];
-    if (home) return NextResponse.redirect(new URL(home, request.url));
-  }
+  // /login is deliberately reachable while signed in. The page offers the
+  // visitor a choice (continue to their portal, or sign in as someone else).
+  // Redirecting here made the sign-in form unreachable, so every other
+  // account looked broken and there was no way to switch user.
 
   const response = NextResponse.next();
 

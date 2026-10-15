@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 import { CalendarClock, MessageCircle, ShieldCheck, Wallet } from 'lucide-react';
 import { auth } from '@/auth';
-import { homeForRole } from '@/lib/rbac';
+import { homeForRole, roleLabel } from '@/lib/rbac';
 import { getAcademyProfile } from '@/server/settings';
 import { ThemeToggle } from '@/components/app-shell';
+import { SwitchAccount } from './switch-account';
 import { LoginForm } from './login-form';
 
 export const metadata = { title: 'Sign in' };
@@ -23,9 +23,17 @@ export default async function LoginPage({
 }) {
   const session = await auth();
 
-  if (session?.user?.role) {
-    redirect(homeForRole(session.user.role));
-  }
+  // A signed-in visitor is not bounced to their portal. Doing so made it
+  // impossible to sign in as a different user: the form was unreachable and
+  // every other login looked broken. Offer an explicit choice instead.
+  const existingSession = session?.user?.role
+    ? {
+        name: session.user.name,
+        email: session.user.email,
+        roleLabel: roleLabel(session.user.role),
+        home: homeForRole(session.user.role),
+      }
+    : null;
 
   const params = await searchParams;
   const profile = await getAcademyProfile();
@@ -120,7 +128,11 @@ export default async function LoginPage({
           </div>
 
           <div className="mt-6">
-            <LoginForm safeNext={safeNext} initialError={params.error} />
+            {existingSession ? (
+              <SwitchAccount session={existingSession} safeNext={safeNext} />
+            ) : (
+              <LoginForm safeNext={safeNext} initialError={params.error} />
+            )}
           </div>
 
           <div className="mt-8 rounded-[var(--radius-lg)] border border-[var(--line)] bg-[var(--surface)] p-4">

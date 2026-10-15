@@ -282,3 +282,15 @@ export const ROLE_HOME: Record<Role, string> = {
 export function homeForRole(role: Role): string {
   return ROLE_HOME[role] ?? '/';
 }
+
+export const ROLE_LABEL: Record<Role, string> = {
+  [Role.ADMIN]: 'Administrator',
+  [Role.TEACHER]: 'Teacher',
+  [Role.STUDENT]: 'Student',
+  [Role.PARENT]: 'Parent',
+};
+
+/** Human label for a role. Kept server-safe so pages can call it directly. */
+export function roleLabel(role: Role): string {
+  return ROLE_LABEL[role] ?? 'User';
+}

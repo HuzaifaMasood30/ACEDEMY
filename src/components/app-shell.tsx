@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import { signOut } from 'next-auth/react';
 import * as Icons from 'lucide-react';
 import {
   ChevronDown,
@@ -327,7 +328,22 @@ export function AppShell({
                     Profile & settings
                   </Link>
 
-                  <form action="/api/auth/signout" method="post">
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      // A bare POST to /api/auth/signout has no CSRF token and is
+                      // rejected with MissingCSRF, leaving the session cookie in
+                      // place. signOut() fetches the token first.
+                      //
+                      // The redirect is done here rather than via `callbackUrl`:
+                      // behind a proxy the request host and the browser origin
+                      // differ, NextAuth treats the callback as external and
+                      // falls back to '/', so the visitor never reaches /login.
+                      void signOut({ redirect: false }).then(() => {
+                        window.location.href = '/login';
+                      });
+                    }}
+                  >
                     <button
                       type="submit"
                       role="menuitem"
