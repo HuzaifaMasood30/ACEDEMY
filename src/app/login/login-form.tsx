@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { signIn, getSession } from 'next-auth/react';
 import { AlertCircle, Eye, EyeOff, LogIn } from 'lucide-react';
 import { Alert, Button, Checkbox, Field, Input, Label } from '@/components/ui/primitives';
 import { authErrorMessage } from '@/lib/auth-errors';
+import { homeForRole } from '@/lib/rbac';
 
 export function LoginForm({
   safeNext,
@@ -58,9 +59,17 @@ export function LoginForm({
         return;
       }
 
+      // Read the role back from the freshly issued session and land the user in
+      // their own portal. Without this the sign-in succeeds but drops everyone
+      // on the public homepage, because no `next` parameter was supplied.
+      const session = await getSession();
+      const destination = session?.user?.role
+        ? homeForRole(session.user.role)
+        : '/';
+
       // A full navigation guarantees the new session cookie is sent with the
       // request that renders the destination portal.
-      router.replace(safeNext || '/');
+      router.replace(safeNext || destination);
       router.refresh();
     } catch {
       setError('We could not reach the server. Check your connection and try again.');

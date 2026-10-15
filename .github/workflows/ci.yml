@@ -67,3 +67,29 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      # The portal redirect bug was invisible to unit tests: sign-in succeeded,
+      # so nothing failed, but every role was dropped on the public homepage.
+      # This drives a real browser through each portal to catch that class of
+      # regression. See scripts/check-portal-login.mjs.
+      - name: Install browser for end-to-end checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Start the application
+        run: |
+          npx next start -p 3000 > /tmp/next-server.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl -sf -o /dev/null http://127.0.0.1:3000/login; then
+              echo "Server is up after ${i}s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Server did not start. Log:"
+          cat /tmp/next-server.log
+          exit 1
+
+      - name: Portal sign-in end-to-end
+        env:
+          BASE: http://127.0.0.1:3000
+        run: node scripts/check-portal-login.mjs
