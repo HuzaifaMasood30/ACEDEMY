@@ -215,6 +215,7 @@ Operational helpers in `scripts/` (not npm scripts):
 | `scripts/probe-portals.sh` | Probe which APIs each role can reach |
 | `scripts/audit-scope.py` | Audit record-scoping logic |
 | `scripts/test-cross-teacher.sh` | Check one teacher cannot read another's classes |
+| `scripts/shots.mjs` | Capture screenshots of the public pages (light and dark) to `agent_tmp/shots/` for visual review |
 
 > `npm run test:e2e` is declared but there is no Playwright config or spec, so it
 > will fail. See [Known limitations](#11-known-limitations).

@@ -44,3 +44,6 @@ Thumbs.db
 
 # Prisma
 prisma/migrations/dev.db*
+
+# Local agent artifacts (screenshots, temp captures)
+.agent_tmp/
